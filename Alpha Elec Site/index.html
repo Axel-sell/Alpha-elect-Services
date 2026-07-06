@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alpha Elec Services SARL — L'énergie qui avance avec l'Ouest</title>
+  <meta name="description" content="Alpha Elec Services SARL, entreprise électrique à Bafoussam, Cameroun. Installation électrique, dépannage, réseaux BT/HT, énergie renouvelable, études techniques et vente de matériel." />
+  <meta property="og:title" content="Alpha Elec Services SARL" />
+  <meta property="og:description" content="L'énergie qui avance avec l'Ouest. Spécialiste en électricité, BTP et énergie à Bafoussam, Cameroun." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       RESET & BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:      #0047AB;
+      --blue-dark: #002f7a;
+      --blue-mid:  #0055cc;
+      --yellow:    #FFC200;
+      --yellow-dk: #e6ad00;
+      --white:     #FFFFFF;
+      --gray-bg:   #F5F5F5;
+      --text:      #1A1A1A;
+      --text-light:#555;
+      --radius:    8px;
+      --shadow:    0 4px 20px rgba(0,0,0,.10);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,.15);
+      --transition: .25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a  { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--blue);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: .95rem;
+      max-width: 560px;
+      margin: 0 auto 52px;
+    }
+    .section-line {
+      display: block;
+      width: 56px;
+      height: 4px;
+      background: var(--yellow);
+      border-radius: 2px;
+      margin: 10px auto 16px;
+    }
+
+    /* =============================================
+       SCROLL FADE-IN ANIMATIONS
+    ============================================= */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: transparent;
+      transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+      padding: 20px 0;
+    }
+    #navbar.scrolled {
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0,0,0,.10);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-logo-fallback {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -.3px;
+      line-height: 1.2;
+      transition: color var(--transition);
+    }
+    .nav-logo-fallback span { color: var(--yellow); }
+    #navbar.scrolled .nav-logo-fallback { color: var(--blue); }
+
+    /* Links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links a {
+      font-size: .88rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.88);
+      padding: 6px 12px;
+      border-radius: var(--radius);
+      transition: color var(--transition), background var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 12px; right: 12px;
+      height: 2px;
+      background: var(--yellow);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+      border-radius: 1px;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); }
+
+    #navbar.scrolled .nav-links a { color: var(--text-light); }
+    #navbar.scrolled .nav-links a:hover,
+    #navbar.scrolled .nav-links a.active { color: var(--blue); }
+
+    /* Right controls */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Language switch */
+    .lang-switch {
+      display: flex;
+      background: rgba(255,255,255,.15);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.3);
+      transition: background var(--transition), border-color var(--transition);
+    }
+    #navbar.scrolled .lang-switch {
+      background: var(--gray-bg);
+      border-color: #ddd;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      color: rgba(255,255,255,.7);
+      transition: color var(--transition), background var(--transition);
+    }
+    #navbar.scrolled .lang-btn { color: var(--text-light); }
+    .lang-btn.active {
+      background: var(--yellow);
+      color: var(--text) !important;
+      border-radius: 18px;
+    }
+
+    /* CTA button */
+    .btn-cta-nav {
+      background: var(--yellow);
+      color: var(--text);
+      font-weight: 700;
+      font-size: .85rem;
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+    .btn-cta-nav:hover {
+      background: var(--yellow-dk);
+      transform: translateY(-1px);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition), background var(--transition);
+    }
+    #navbar.scrolled .hamburger span { background: var(--blue); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--blue-dark);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      transition: background var(--transition);
+    }
+    .mobile-menu a:hover { background: rgba(255,255,255,.1); }
+    .mobile-menu .btn-cta-nav { margin-top: 16px; font-size: 1rem; padding: 14px 40px; }
+    .mobile-menu .lang-switch {
+      margin-top: 16px;
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.2);
+    }
+    .mobile-menu .lang-btn { color: rgba(255,255,255,.7); }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    #accueil {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-mid) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+
+    /* Subtle electric grid pattern */
+    #accueil::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Lightning bolt SVG decoration */
+    .hero-deco {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .06;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,194,0,.15);
+      border: 1px solid rgba(255,194,0,.35);
+      color: var(--yellow);
+      font-size: .82rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    .hero-title span { color: var(--yellow); }
+    .hero-slogan {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .hero-desc {
+      font-size: .98rem;
+      color: rgba(255,255,255,.72);
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--text);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--yellow-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255,194,0,.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: .95rem;
+      padding: 13px 32px;
+      border-radius: var(--radius);
+      border: 2px solid rgba(255,255,255,.5);
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,.08);
+      transform: translateY(-2px);
+    }
+
+    /* Hero stats bar */
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-stat strong {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .hero-stat span {
+      font-size: .8rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    /* =============================================
+       SERVICES
+    ============================================= */
+    #services {
+      padding: 96px 0;
+      background: var(--white);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1.5px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--yellow);
+    }
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(0,71,171,.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      transition: background var(--transition);
+    }
+    .service-card:hover .service-icon { background: rgba(255,194,0,.15); }
+    .service-icon svg { width: 28px; height: 28px; }
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: .88rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* =============================================
+       RÉALISATIONS
+    ============================================= */
+    #realisations {
+      padding: 96px 0;
+      background: var(--gray-bg);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      background: #1a1a2e;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.15) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .gallery-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 18px 14px;
+      z-index: 2;
+    }
+    .gallery-label strong {
+      display: block;
+      font-size: .92rem;
+      font-weight: 700;
+      color: var(--white);
+      text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    }
+    .gallery-label span {
+      font-size: .78rem;
+      color: rgba(255,255,255,.78);
+      text-shadow: 0 1px 3px rgba(0,0,0,.5);
+    }
+    .gallery-placeholder-note {
+      text-align: center;
+      font-size: .82rem;
+      color: #aaa;
+      margin-top: 24px;
+      font-style: italic;
+    }
+
+    /* =============================================
+       À PROPOS
+    ============================================= */
+    #apropos {
+      padding: 96px 0;
+      background: var(--white);
+    }
+
+    .apropos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .apropos-text h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .apropos-text p {
+      color: var(--text-light);
+      font-size: .95rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .engagements {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .engagement-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .9rem;
+      color: var(--text);
+    }
+    .engagement-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--yellow);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .apropos-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--blue);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,.05);
+      border-radius: 50%;
+    }
+    .stat-card strong {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .stat-card span {
+      display: block;
+      font-size: .75rem;
+      color: rgba(255,255,255,.7);
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .certif-block {
+      background: var(--gray-bg);
+      border-radius: 12px;
+      padding: 24px;
+      border-left: 4px solid var(--yellow);
+    }
+    .certif-block p {
+      font-size: .88rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* =============================================
+       CONTACT
+    ============================================= */
+    #contact {
+      padding: 96px 0;
+      background: var(--blue-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    #contact .section-title { color: var(--white); }
+    #contact .section-subtitle { color: rgba(255,255,255,.6); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-info-block {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: 36px;
+    }
+    .contact-info-block h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-size: .82rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,194,0,.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+    .contact-item-text strong {
+      display: block;
+      font-size: .78rem;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 3px;
+    }
+    .contact-item-text a,
+    .contact-item-text p {
+      font-size: .95rem;
+      color: var(--white);
+      line-height: 1.5;
+      transition: color var(--transition);
+    }
+    .contact-item-text a:hover { color: var(--yellow); }
+
+    .whatsapp-block {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .whatsapp-block h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .whatsapp-block p {
+      font-size: .9rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.7;
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: var(--white);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37,211,102,.35);
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: #0a0f1e;
+      padding: 56px 0 28px;
+      color: rgba(255,255,255,.6);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand img { height: 44px; margin-bottom: 14px; }
+    .footer-brand-fallback {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .footer-brand-fallback span { color: var(--yellow); }
+    .footer-slogan {
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .footer-desc { font-size: .83rem; line-height: 1.7; }
+
+    .footer-col h4 {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 20px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: .85rem;
+      color: rgba(255,255,255,.55);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-contact-list { display: flex; flex-direction: column; gap: 12px; }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .83rem;
+    }
+    .footer-contact-item span:first-child { font-size: 1rem; flex-shrink: 0; }
+    .footer-contact-item a { color: rgba(255,255,255,.55); transition: color var(--transition); }
+    .footer-contact-item a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-bottom p { font-size: .8rem; }
+    .footer-bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .8rem;
+    }
+    .footer-bottom-right span { color: var(--yellow); }
+
+    /* =============================================
+       BACK TO TOP
+    ============================================= */
+    #back-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: none;
+    }
+    #back-top.show {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    #back-top:hover { box-shadow: 0 4px 16px rgba(255,194,0,.5); }
+    #back-top svg { width: 18px; height: 18px; }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid  { grid-template-columns: repeat(2, 1fr); }
+      .apropos-grid  { grid-template-columns: 1fr; gap: 40px; }
+      .apropos-right { order: -1; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .btn-cta-nav { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid  { grid-template-columns: 1fr; }
+      .contact-grid  { grid-template-columns: 1fr; }
+      .footer-grid   { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .stat-card strong { font-size: 1.6rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-stats { gap: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-outline { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <nav id="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container nav-inner">
+
+      <!-- Logo -->
+      <a href="#accueil" class="nav-logo" aria-label="Alpha Elec Services — Accueil">
+        <img src="logo.png" alt="Alpha Elec Services" id="nav-logo-img"
+             onerror="this.style.display='none'; document.getElementById('nav-logo-txt').style.display='block';" />
+        <div class="nav-logo-fallback" id="nav-logo-txt" style="display:none;">
+          Alpha <span>Elec</span><br><small style="font-size:.65em;font-weight:500;opacity:.7;">Services SARL</small>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#accueil"     data-i18n="nav.home"       class="nav-link active">Accueil</a></li>
+        <li><a href="#services"    data-i18n="nav.services"   class="nav-link">Services</a></li>
+        <li><a href="#realisations" data-i18n="nav.projects"  class="nav-link">Réalisations</a></li>
+        <li><a href="#apropos"     data-i18n="nav.about"      class="nav-link">À propos</a></li>
+        <li><a href="#contact"     data-i18n="nav.contact"    class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <!-- Language switch -->
+        <div class="lang-switch" role="group" aria-label="Sélection de langue">
+          <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')" aria-pressed="true">FR</button>
+          <button class="lang-btn"        id="btn-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+        </div>
+
+        <!-- CTA -->
+        <a href="#contact" class="btn-cta-nav" data-i18n="nav.cta">Nous contacter</a>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu mobile">
+    <a href="#accueil"      data-i18n="nav.home"     class="mob-link" onclick="closeMenu()">Accueil</a>
+    <a href="#services"     data-i18n="nav.services" class="mob-link" onclick="closeMenu()">Services</a>
+    <a href="#realisations" data-i18n="nav.projects" class="mob-link" onclick="closeMenu()">Réalisations</a>
+    <a href="#apropos"      data-i18n="nav.about"    class="mob-link" onclick="closeMenu()">À propos</a>
+    <a href="#contact"      data-i18n="nav.contact"  class="mob-link" onclick="closeMenu()">Contact</a>
+    <a href="#contact" class="btn-cta-nav" data-i18n="nav.cta" onclick="closeMenu()">Nous contacter</a>
+    <div class="lang-switch" style="margin-top:16px;">
+      <button class="lang-btn active" id="btn-fr-mob" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn"        id="btn-en-mob" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+
+  <!-- =============================================
+       HERO
+  ============================================= -->
+  <section id="accueil" aria-label="Accueil">
+
+    <!-- Decorative lightning -->
+    <svg class="hero-deco" width="600" height="600" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <polygon points="55,5 20,55 45,55 35,95 80,40 55,40" fill="white"/>
+    </svg>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+          </svg>
+          <span data-i18n="hero.badge">Entreprise Électrique · Bafoussam, Cameroun</span>
+        </div>
+
+        <h1 class="hero-title">
+          Alpha <span>Elec</span><br>Services
+        </h1>
+        <p class="hero-slogan" data-i18n="hero.slogan">« L'énergie qui avance avec l'Ouest »</p>
+        <p class="hero-desc" data-i18n="hero.desc">
+          Spécialiste en installation électrique, réseaux BT/HT et énergie renouvelable.
+          Fiabilité, expertise et engagement au service des particuliers et des industriels de la Région de l'Ouest.
+        </p>
+
+        <div class="hero-btns">
+          <a href="#services" class="btn-primary" data-i18n="hero.btn1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+            Nos services
+          </a>
+          <a href="#contact" class="btn-outline" data-i18n="hero.btn2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Nous contacter
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>10+</strong>
+            <span data-i18n="hero.stat1">Années d'expérience</span>
+          </div>
+          <div class="hero-stat">
+            <strong>350+</strong>
+            <span data-i18n="hero.stat2">Projets réalisés</span>
+          </div>
+          <div class="hero-stat">
+            <strong>200+</strong>
+            <span data-i18n="hero.stat3">Clients satisfaits</span>
+          </div>
+          <div class="hero-stat">
+            <strong>6</strong>
+            <span data-i18n="hero.stat4">Services disponibles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       SERVICES
+  ============================================= -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="container">
+      <h2 class="section-title fade-up" id="services-title" data-i18n="services.title">Nos Services</h2>
+      <span class="section-line fade-up"></span>
+      <p class="section-subtitle fade-up" data-i18n="services.subtitle">
+        Des prestations complètes en électricité et énergie, adaptées aux besoins des particuliers, entreprises et industriels.
+      </p>
+
+      <div class="services-grid">
+
+        <!-- 1 -->
+        <article class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2" aria-hidden="true">
+              <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/>
+              <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+              <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/>
+              <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/>
+              <path d="M14 14.5V19a2 2 0 01-2 2H4a2 2 0 01-2-2v-5a2 2 0 012-2h8a2 2 0 012 2zM2 9.5V5a2 2 0 012-2h8a2 2 0 012 2v4.5"/>
+            </svg>
+          </div>
+          <h3 data-i18n="s1.title">Installation Électrique</h3>
+          <p data-i18n="s1.desc">
+            Conception et réalisation de tableaux électriques, câblage résidentiel et industriel aux normes en vigueur. Nous intervenons pour les logements, bureaux et bâtiments commerciaux dans toute la Région de l'Ouest.
+          </p>
+        </article>
+
+        <!-- 2 -->
+        <article class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
+              <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
+            </svg>
+          </div>
+          <h3 data-i18n="s2.title">Dépannage & Maintenance</h3>
+          <p data-i18n="s2.desc">
+            Interventions rapides pour tout type de panne électrique : courts-circuits, défauts de disjoncteurs, coupures intempestives. Maintenance préventive et corrective pour garantir la continuité de votre alimentation.
+          </p>
+        </article>
+
+        <!-- 3 -->
+        <article class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 data-i18n="s3.title">Réseaux Électriques BT/HT</h3>
+          <p data-i18n="s3.desc">
+            Extension et construction de lignes basse tension (BT) et haute tension (HT), pose de poteaux et armements, raccordements au réseau ENEO. Expertise reconnue dans les travaux de génie électrique en milieu urbain et rural.
+          </p>
+        </article>
+
+        <!-- 4 -->
+        <article class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </div>
+          <h3 data-i18n="s4.title">Énergie Renouvelable</h3>
+          <p data-i18n="s4.desc">
+            Installation de systèmes solaires photovoltaïques autonomes et hybrides pour les ménages et entreprises. Solutions adaptées aux zones périurbaines et rurales de l'Ouest Cameroun, avec onduleurs et batteries de stockage.
+          </p>
+        </article>
+
+        <!-- 5 -->
+        <article class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2" aria-hidden="true">
+              <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+            </svg>
+          </div>
+          <h3 data-i18n="s5.title">Études & Conseils Techniques</h3>
+          <p data-i18n="s5.desc">
+            Élaboration de plans électriques, dimensionnement des installations, bilans de puissance et notes de calcul. Accompagnement technique de la conception à la réception des travaux pour garantir conformité et sécurité.
+          </p>
+        </article>
+
+        <!-- 6 -->
+        <article class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2" aria-hidden="true">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </div>
+          <h3 data-i18n="s6.title">Vente de Matériel Électrique</h3>
+          <p data-i18n="s6.desc">
+            Fourniture de câbles, disjoncteurs, tableaux électriques, luminaires, panneaux solaires et accessoires de qualité. Matériel sélectionné auprès de fournisseurs fiables pour assurer durabilité et performance de vos installations.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       RÉALISATIONS
+  ============================================= -->
+  <section id="realisations" aria-labelledby="real-title">
+    <div class="container">
+      <h2 class="section-title fade-up" id="real-title" data-i18n="real.title">Nos Réalisations</h2>
+      <span class="section-line fade-up"></span>
+      <p class="section-subtitle fade-up" data-i18n="real.subtitle">
+        Un aperçu de nos interventions sur le terrain — installations résidentielles, industrielles et réseaux publics.
+      </p>
+
+      <div class="gallery-grid">
+
+        <!-- 1 : Technicien africain en casque de chantier avec outils -->
+        <div class="gallery-item fade-up">
+          <img
+            src="https://images.pexels.com/photos/11321790/pexels-photo-11321790.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            alt="Technicien africain en casque de sécurité sur chantier électrique"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"></div>
+          <div class="gallery-label">
+            <strong data-i18n="real.p1.title">Réseau BT — Zone périurbaine</strong>
+            <span data-i18n="real.p1.sub">Extension ligne 630 m · Bafoussam</span>
+          </div>
+        </div>
+
+        <!-- 2 : Ouvrier nigérian sur route, infrastructure -->
+        <div class="gallery-item fade-up">
+          <img
+            src="https://images.pexels.com/photos/27771755/pexels-photo-27771755.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            alt="Ouvrier africain en gilet de sécurité sur route, Nigeria"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"></div>
+          <div class="gallery-label">
+            <strong data-i18n="real.p2.title">Installation solaire industrielle</strong>
+            <span data-i18n="real.p2.sub">30 kWc — Site agro-industriel</span>
+          </div>
+        </div>
+
+        <!-- 3 : Femme noire avec perceuse, construction résidentielle -->
+        <div class="gallery-item fade-up">
+          <img
+            src="https://images.pexels.com/photos/8486929/pexels-photo-8486929.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            alt="Technicienne africaine en équipement de sécurité avec perceuse"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"></div>
+          <div class="gallery-label">
+            <strong data-i18n="real.p3.title">Électrification résidentielle</strong>
+            <span data-i18n="real.p3.sub">Immeuble R+4 · 24 appartements</span>
+          </div>
+        </div>
+
+        <!-- 4 : Technicienne africaine sur tableau électrique industriel -->
+        <div class="gallery-item fade-up">
+          <img
+            src="https://images.pexels.com/photos/34526423/pexels-photo-34526423.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            alt="Technicienne africaine réparant un tableau de contrôle électrique industriel"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"></div>
+          <div class="gallery-label">
+            <strong data-i18n="real.p4.title">Tableau électrique industriel</strong>
+            <span data-i18n="real.p4.sub">Armoire TGBT 400A · Usine de transformation</span>
+          </div>
+        </div>
+
+        <!-- 5 : Ingénieur noir de dos, casque blanc, terrain -->
+        <div class="gallery-item fade-up">
+          <img
+            src="https://images.pexels.com/photos/442160/pexels-photo-442160.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            alt="Ingénieur africain de dos avec casque blanc sur site"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"></div>
+          <div class="gallery-label">
+            <strong data-i18n="real.p5.title">Éclairage public</strong>
+            <span data-i18n="real.p5.sub">Voie principale · 48 luminaires LED</span>
+          </div>
+        </div>
+
+        <!-- 6 : Ouvrier africain en casque jaune, uniforme de travail -->
+        <div class="gallery-item fade-up">
+          <img
+            src="https://images.pexels.com/photos/10682438/pexels-photo-10682438.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            alt="Ouvrier africain en casque et uniforme de travail"
+            loading="lazy"
+          />
+          <div class="gallery-overlay"></div>
+          <div class="gallery-label">
+            <strong data-i18n="real.p6.title">Mise aux normes villa</strong>
+            <span data-i18n="real.p6.sub">Rénovation complète · Quartier Djeleng</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       À PROPOS
+  ============================================= -->
+  <section id="apropos" aria-labelledby="about-title">
+    <div class="container">
+      <h2 class="section-title fade-up" id="about-title" data-i18n="about.title">À Propos de Nous</h2>
+      <span class="section-line fade-up"></span>
+
+      <div class="apropos-grid">
+
+        <div class="apropos-text fade-up">
+          <p data-i18n="about.p1">
+            Alpha Elec Services SARL est une entreprise camerounaise spécialisée dans les travaux d'électricité, le BTP et les solutions énergétiques. Implantée à Bafoussam depuis plus d'une décennie, nous accompagnons particuliers, PME et collectivités dans leurs projets électriques avec sérieux et professionnalisme.
+          </p>
+          <p data-i18n="about.p2">
+            Notre ancrage local dans la Région de l'Ouest du Cameroun nous confère une connaissance approfondie des réalités du terrain et des exigences des maîtres d'ouvrage. Nous intervenons sur des projets variés : de la petite installation domestique aux grands réseaux de distribution électrique.
+          </p>
+          <p data-i18n="about.p3">
+            Constituée en Société à Responsabilité Limitée, Alpha Elec Services SARL est engagée dans le respect des normes techniques et de la réglementation en vigueur, garantissant à nos clients des installations sûres, durables et efficaces.
+          </p>
+
+          <div class="engagements">
+            <div class="engagement-item">
+              <span class="engagement-dot"></span>
+              <span data-i18n="about.eng1">Respect strict des normes électriques et des délais contractuels</span>
+            </div>
+            <div class="engagement-item">
+              <span class="engagement-dot"></span>
+              <span data-i18n="about.eng2">Matériaux certifiés et main-d'œuvre qualifiée à chaque intervention</span>
+            </div>
+            <div class="engagement-item">
+              <span class="engagement-dot"></span>
+              <span data-i18n="about.eng3">Proximité et réactivité : nous répondons à vos urgences 6j/7</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="apropos-right">
+          <div class="stats-row fade-up">
+            <div class="stat-card">
+              <strong>10+</strong>
+              <span data-i18n="about.stat1">Ans d'exp.</span>
+            </div>
+            <div class="stat-card">
+              <strong>350+</strong>
+              <span data-i18n="about.stat2">Projets</span>
+            </div>
+            <div class="stat-card">
+              <strong>200+</strong>
+              <span data-i18n="about.stat3">Clients</span>
+            </div>
+          </div>
+
+          <div class="certif-block fade-up">
+            <p data-i18n="about.certif">
+              <strong>Notre mission :</strong> fournir des solutions électriques fiables et innovantes qui soutiennent le développement économique de la Région de l'Ouest et contribuent à l'accès à l'énergie pour tous.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       CONTACT
+  ============================================= -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 class="section-title fade-up" id="contact-title" data-i18n="contact.title">Contactez-nous</h2>
+      <span class="section-line fade-up"></span>
+      <p class="section-subtitle fade-up" data-i18n="contact.subtitle">
+        Disponibles pour vous répondre et étudier votre projet. N'hésitez pas à nous joindre.
+      </p>
+
+      <div class="contact-grid">
+
+        <!-- Coordonnées -->
+        <div class="contact-info-block fade-up">
+          <h3 data-i18n="contact.info.title">Nos coordonnées</h3>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-item-text">
+              <strong data-i18n="contact.phone.label">Téléphone</strong>
+              <a href="tel:+237682202265">682 20 22 65</a><br>
+              <a href="tel:+237621100723">621 10 07 23</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-item-text">
+              <strong data-i18n="contact.email.label">Email</strong>
+              <a href="mailto:alpha.elec@gmail.com">alpha.elec@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-item-text">
+              <strong data-i18n="contact.addr.label">Adresse</strong>
+              <p data-i18n="contact.addr.val">Route de la Prison centrale, à 200 m du Stade omnisports de Toket, Bafoussam, Cameroun</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="whatsapp-block fade-up">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+            <circle cx="26" cy="26" r="26" fill="#25D366"/>
+            <path d="M36.3 15.6A14.37 14.37 0 0026 11.5C18.6 11.5 12.5 17.6 12.5 25c0 2.36.62 4.67 1.8 6.7l-1.9 6.94 7.1-1.86A14.4 14.4 0 0026 38.5c7.4 0 13.5-6.1 13.5-13.5 0-3.6-1.4-7-3.9-9.6l.7.2zM26 36.3a12.1 12.1 0 01-6.2-1.7l-.44-.26-4.6 1.2 1.22-4.47-.29-.46A12.06 12.06 0 0113.7 25c0-6.8 5.5-12.3 12.3-12.3 3.3 0 6.4 1.28 8.7 3.6a12.2 12.2 0 013.6 8.7c0 6.8-5.5 12.3-12.3 12.3zm6.74-9.2c-.37-.18-2.18-1.08-2.52-1.2-.34-.13-.58-.18-.83.18-.25.36-.95 1.2-1.17 1.45-.21.25-.43.28-.8.1-.37-.18-1.56-.58-2.97-1.83-1.1-.98-1.84-2.19-2.05-2.56-.22-.37-.02-.57.16-.75.17-.17.37-.43.55-.65.18-.22.24-.37.36-.62.12-.24.06-.46-.03-.64-.1-.18-.83-2-.1-2.73.69-.7 1.78-.5 2.03.07.07.17.11.36.11.36s.09.22.2.53c.26.7.55 1.49.6 1.62.06.13.1.28 0 .46-.1.18-.15.3-.3.45-.14.17-.3.36-.43.49-.13.13-.27.27-.12.53.16.26.7 1.15 1.5 1.87.99.88 1.83 1.16 2.1 1.3.27.13.42.1.58-.06.15-.16.65-.76.82-1.02.17-.26.35-.22.58-.13.23.1 1.47.7 1.72.82.25.13.42.19.48.3.06.1.06.6-.16 1.18-.22.57-1.28 1.1-1.77 1.16-.46.06-.9.08-2.9-.6z" fill="white"/>
+          </svg>
+          <div>
+            <h3 data-i18n="contact.wa.title">Discutons sur WhatsApp</h3>
+            <p data-i18n="contact.wa.desc">
+              Pour un devis rapide, une question technique ou pour décrire votre projet, écrivez-nous directement sur WhatsApp. Réponse en moins de 24 h.
+            </p>
+          </div>
+          <a href="https://wa.me/237682202265" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+              <path d="M36.3 15.6A14.37 14.37 0 0026 11.5C18.6 11.5 12.5 17.6 12.5 25c0 2.36.62 4.67 1.8 6.7l-1.9 6.94 7.1-1.86A14.4 14.4 0 0026 38.5c7.4 0 13.5-6.1 13.5-13.5 0-3.6-1.4-7-3.9-9.6zm-10.3 20.7a12.1 12.1 0 01-6.2-1.7l-.44-.26-4.6 1.2 1.22-4.47-.29-.46A12.06 12.06 0 0113.7 25c0-6.8 5.5-12.3 12.3-12.3 3.3 0 6.4 1.28 8.7 3.6a12.2 12.2 0 013.6 8.7c0 6.8-5.5 12.3-12.3 12.3z" fill="white"/>
+            </svg>
+            <span data-i18n="contact.wa.btn">Écrire sur WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <img src="logo.png" alt="Alpha Elec Services"
+               onerror="this.style.display='none'; document.getElementById('footer-logo-txt').style.display='block';" />
+          <div class="footer-brand-fallback" id="footer-logo-txt" style="display:none;">
+            Alpha <span>Elec</span> Services
+          </div>
+          <p class="footer-slogan" data-i18n="footer.slogan">« L'énergie qui avance avec l'Ouest »</p>
+          <p class="footer-desc" data-i18n="footer.desc">
+            Entreprise spécialisée en électricité, BTP et énergie renouvelable à Bafoussam, Cameroun. Expertise, fiabilité et engagement depuis plus de 10 ans.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="footer-col">
+          <h4 data-i18n="footer.links.title">Liens rapides</h4>
+          <ul class="footer-links">
+            <li><a href="#accueil"      data-i18n="nav.home">Accueil</a></li>
+            <li><a href="#services"     data-i18n="nav.services">Services</a></li>
+            <li><a href="#realisations" data-i18n="nav.projects">Réalisations</a></li>
+            <li><a href="#apropos"      data-i18n="nav.about">À propos</a></li>
+            <li><a href="#contact"      data-i18n="nav.contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4 data-i18n="footer.contact.title">Contact</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <span>📞</span>
+              <a href="tel:+237682202265">682 20 22 65</a>
+            </li>
+            <li class="footer-contact-item">
+              <span>📞</span>
+              <a href="tel:+237621100723">621 10 07 23</a>
+            </li>
+            <li class="footer-contact-item">
+              <span>✉️</span>
+              <a href="mailto:alpha.elec@gmail.com">alpha.elec@gmail.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <span>📍</span>
+              <span>Route de la Prison centrale, Bafoussam</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer.copy">© 2025 Alpha Elec Services SARL — Tous droits réservés</p>
+        <div class="footer-bottom-right">
+          <span>⚡</span>
+          <span style="color:rgba(255,255,255,.4);" data-i18n="footer.made">Bafoussam, Cameroun</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="back-top" aria-label="Retour en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+  /* ============================================
+     TRANSLATIONS
+  ============================================ */
+  const translations = {
+    fr: {
+      /* Nav */
+      'nav.home':     'Accueil',
+      'nav.services': 'Services',
+      'nav.projects': 'Réalisations',
+      'nav.about':    'À propos',
+      'nav.contact':  'Contact',
+      'nav.cta':      'Nous contacter',
+
+      /* Hero */
+      'hero.badge':  'Entreprise Électrique · Bafoussam, Cameroun',
+      'hero.slogan': '« L\'énergie qui avance avec l\'Ouest »',
+      'hero.desc':   'Spécialiste en installation électrique, réseaux BT/HT et énergie renouvelable. Fiabilité, expertise et engagement au service des particuliers et des industriels de la Région de l\'Ouest.',
+      'hero.btn1':   'Nos services',
+      'hero.btn2':   'Nous contacter',
+      'hero.stat1':  'Années d\'expérience',
+      'hero.stat2':  'Projets réalisés',
+      'hero.stat3':  'Clients satisfaits',
+      'hero.stat4':  'Services disponibles',
+
+      /* Services section */
+      'services.title':    'Nos Services',
+      'services.subtitle': 'Des prestations complètes en électricité et énergie, adaptées aux besoins des particuliers, entreprises et industriels.',
+      's1.title': 'Installation Électrique',
+      's1.desc':  'Conception et réalisation de tableaux électriques, câblage résidentiel et industriel aux normes en vigueur. Nous intervenons pour les logements, bureaux et bâtiments commerciaux dans toute la Région de l\'Ouest.',
+      's2.title': 'Dépannage & Maintenance',
+      's2.desc':  'Interventions rapides pour tout type de panne électrique : courts-circuits, défauts de disjoncteurs, coupures intempestives. Maintenance préventive et corrective pour garantir la continuité de votre alimentation.',
+      's3.title': 'Réseaux Électriques BT/HT',
+      's3.desc':  'Extension et construction de lignes basse tension (BT) et haute tension (HT), pose de poteaux et armements, raccordements au réseau ENEO. Expertise reconnue dans les travaux de génie électrique en milieu urbain et rural.',
+      's4.title': 'Énergie Renouvelable',
+      's4.desc':  'Installation de systèmes solaires photovoltaïques autonomes et hybrides pour les ménages et entreprises. Solutions adaptées aux zones périurbaines et rurales de l\'Ouest Cameroun, avec onduleurs et batteries de stockage.',
+      's5.title': 'Études & Conseils Techniques',
+      's5.desc':  'Élaboration de plans électriques, dimensionnement des installations, bilans de puissance et notes de calcul. Accompagnement technique de la conception à la réception des travaux pour garantir conformité et sécurité.',
+      's6.title': 'Vente de Matériel Électrique',
+      's6.desc':  'Fourniture de câbles, disjoncteurs, tableaux électriques, luminaires, panneaux solaires et accessoires de qualité. Matériel sélectionné auprès de fournisseurs fiables pour assurer durabilité et performance.',
+
+      /* Réalisations */
+      'real.title':    'Nos Réalisations',
+      'real.subtitle': 'Un aperçu de nos interventions sur le terrain — installations résidentielles, industrielles et réseaux publics.',
+      'real.p1.title': 'Réseau BT — Zone périurbaine',
+      'real.p1.sub':   'Extension ligne 630 m · Bafoussam',
+      'real.p2.title': 'Installation solaire industrielle',
+      'real.p2.sub':   '30 kWc — Site agro-industriel',
+      'real.p3.title': 'Électrification résidentielle',
+      'real.p3.sub':   'Immeuble R+4 · 24 appartements',
+      'real.p4.title': 'Tableau électrique industriel',
+      'real.p4.sub':   'Armoire TGBT 400A · Usine de transformation',
+      'real.p5.title': 'Éclairage public',
+      'real.p5.sub':   'Voie principale · 48 luminaires LED',
+      'real.p6.title': 'Mise aux normes villa',
+      'real.p6.sub':   'Rénovation complète · Quartier Djeleng',
+      'real.note':     '* Galerie illustrative — remplacez ces blocs par vos photos de chantier.',
+
+      /* À propos */
+      'about.title': 'À Propos de Nous',
+      'about.p1':    'Alpha Elec Services SARL est une entreprise camerounaise spécialisée dans les travaux d\'électricité, le BTP et les solutions énergétiques. Implantée à Bafoussam depuis plus d\'une décennie, nous accompagnons particuliers, PME et collectivités dans leurs projets électriques avec sérieux et professionnalisme.',
+      'about.p2':    'Notre ancrage local dans la Région de l\'Ouest du Cameroun nous confère une connaissance approfondie des réalités du terrain et des exigences des maîtres d\'ouvrage. Nous intervenons sur des projets variés : de la petite installation domestique aux grands réseaux de distribution électrique.',
+      'about.p3':    'Constituée en Société à Responsabilité Limitée, Alpha Elec Services SARL est engagée dans le respect des normes techniques et de la réglementation en vigueur, garantissant à nos clients des installations sûres, durables et efficaces.',
+      'about.eng1':  'Respect strict des normes électriques et des délais contractuels',
+      'about.eng2':  'Matériaux certifiés et main-d\'œuvre qualifiée à chaque intervention',
+      'about.eng3':  'Proximité et réactivité : nous répondons à vos urgences 6j/7',
+      'about.stat1': 'Ans d\'exp.',
+      'about.stat2': 'Projets',
+      'about.stat3': 'Clients',
+      'about.certif':'<strong>Notre mission :</strong> fournir des solutions électriques fiables et innovantes qui soutiennent le développement économique de la Région de l\'Ouest et contribuent à l\'accès à l\'énergie pour tous.',
+
+      /* Contact */
+      'contact.title':       'Contactez-nous',
+      'contact.subtitle':    'Disponibles pour vous répondre et étudier votre projet. N\'hésitez pas à nous joindre.',
+      'contact.info.title':  'Nos coordonnées',
+      'contact.phone.label': 'Téléphone',
+      'contact.email.label': 'Email',
+      'contact.addr.label':  'Adresse',
+      'contact.addr.val':    'Route de la Prison centrale, à 200 m du Stade omnisports de Toket, Bafoussam, Cameroun',
+      'contact.wa.title':    'Discutons sur WhatsApp',
+      'contact.wa.desc':     'Pour un devis rapide, une question technique ou pour décrire votre projet, écrivez-nous directement sur WhatsApp. Réponse en moins de 24 h.',
+      'contact.wa.btn':      'Écrire sur WhatsApp',
+
+      /* Footer */
+      'footer.slogan':        '« L\'énergie qui avance avec l\'Ouest »',
+      'footer.desc':          'Entreprise spécialisée en électricité, BTP et énergie renouvelable à Bafoussam, Cameroun. Expertise, fiabilité et engagement depuis plus de 10 ans.',
+      'footer.links.title':   'Liens rapides',
+      'footer.contact.title': 'Contact',
+      'footer.copy':          '© 2025 Alpha Elec Services SARL — Tous droits réservés',
+      'footer.made':          'Bafoussam, Cameroun',
+    },
+
+    en: {
+      /* Nav */
+      'nav.home':     'Home',
+      'nav.services': 'Services',
+      'nav.projects': 'Projects',
+      'nav.about':    'About',
+      'nav.contact':  'Contact',
+      'nav.cta':      'Contact Us',
+
+      /* Hero */
+      'hero.badge':  'Electrical Company · Bafoussam, Cameroon',
+      'hero.slogan': '"Energy moving forward with the West"',
+      'hero.desc':   'Specialists in electrical installation, LV/HV networks and renewable energy. Reliability, expertise and commitment serving individuals and industries in the Western Region.',
+      'hero.btn1':   'Our Services',
+      'hero.btn2':   'Contact Us',
+      'hero.stat1':  'Years of Experience',
+      'hero.stat2':  'Projects Completed',
+      'hero.stat3':  'Satisfied Clients',
+      'hero.stat4':  'Available Services',
+
+      /* Services section */
+      'services.title':    'Our Services',
+      'services.subtitle': 'Complete electrical and energy services tailored to the needs of individuals, businesses and industries.',
+      's1.title': 'Electrical Installation',
+      's1.desc':  'Design and construction of electrical panels, residential and industrial wiring to current standards. We operate for homes, offices and commercial buildings throughout the Western Region.',
+      's2.title': 'Troubleshooting & Maintenance',
+      's2.desc':  'Fast response for all types of electrical faults: short circuits, circuit breaker failures, unexpected power cuts. Preventive and corrective maintenance to ensure continuity of your power supply.',
+      's3.title': 'LV/HV Electrical Networks',
+      's3.desc':  'Extension and construction of low voltage (LV) and high voltage (HV) lines, pole installation, connections to the ENEO network. Recognized expertise in electrical engineering in urban and rural environments.',
+      's4.title': 'Renewable Energy',
+      's4.desc':  'Installation of stand-alone and hybrid photovoltaic solar systems for households and businesses. Solutions adapted to peri-urban and rural areas of Western Cameroon, with inverters and storage batteries.',
+      's5.title': 'Technical Studies & Consulting',
+      's5.desc':  'Development of electrical plans, system sizing, power balances and calculation notes. Technical support from design to project handover to ensure compliance and safety.',
+      's6.title': 'Electrical Equipment Sales',
+      's6.desc':  'Supply of quality cables, circuit breakers, electrical panels, luminaires, solar panels and accessories. Materials sourced from reliable suppliers to ensure durability and performance.',
+
+      /* Réalisations */
+      'real.title':    'Our Projects',
+      'real.subtitle': 'A glimpse of our field work — residential, industrial installations and public networks.',
+      'real.p1.title': 'LV Network — Peri-urban Area',
+      'real.p1.sub':   '630 m line extension · Bafoussam',
+      'real.p2.title': 'Industrial Solar Installation',
+      'real.p2.sub':   '30 kWp — Agro-industrial site',
+      'real.p3.title': 'Residential Electrification',
+      'real.p3.sub':   'R+4 Building · 24 apartments',
+      'real.p4.title': 'Industrial Electrical Panel',
+      'real.p4.sub':   'TGBT 400A cabinet · Processing plant',
+      'real.p5.title': 'Street Lighting',
+      'real.p5.sub':   'Main road · 48 LED fixtures',
+      'real.p6.title': 'Villa Standards Upgrade',
+      'real.p6.sub':   'Full renovation · Djeleng District',
+      'real.note':     '* Illustrative gallery — replace these blocks with your site photos.',
+
+      /* About */
+      'about.title': 'About Us',
+      'about.p1':    'Alpha Elec Services SARL is a Cameroonian company specialising in electrical works, construction and energy solutions. Based in Bafoussam for over a decade, we support individuals, SMEs and local authorities in their electrical projects with professionalism and dedication.',
+      'about.p2':    'Our local roots in the Western Region of Cameroon give us a deep understanding of on-the-ground realities and client requirements. We handle a wide range of projects, from small domestic installations to large-scale power distribution networks.',
+      'about.p3':    'Incorporated as a Limited Liability Company, Alpha Elec Services SARL is committed to upholding technical standards and current regulations, ensuring our clients receive safe, durable and efficient installations.',
+      'about.eng1':  'Strict compliance with electrical standards and contractual deadlines',
+      'about.eng2':  'Certified materials and qualified workforce on every job',
+      'about.eng3':  'Proximity and responsiveness: emergency call-outs 6 days a week',
+      'about.stat1': 'Yrs of exp.',
+      'about.stat2': 'Projects',
+      'about.stat3': 'Clients',
+      'about.certif':'<strong>Our mission:</strong> to deliver reliable and innovative electrical solutions that support economic development in the Western Region and contribute to energy access for all.',
+
+      /* Contact */
+      'contact.title':       'Contact Us',
+      'contact.subtitle':    'Available to answer your questions and assess your project. Don\'t hesitate to reach out.',
+      'contact.info.title':  'Our Contact Details',
+      'contact.phone.label': 'Phone',
+      'contact.email.label': 'Email',
+      'contact.addr.label':  'Address',
+      'contact.addr.val':    'Route de la Prison centrale, 200 m from the Toket Omnisports Stadium, Bafoussam, Cameroon',
+      'contact.wa.title':    'Chat with Us on WhatsApp',
+      'contact.wa.desc':     'For a quick quote, a technical question or to describe your project, write to us directly on WhatsApp. Response within 24 hours.',
+      'contact.wa.btn':      'Write on WhatsApp',
+
+      /* Footer */
+      'footer.slogan':        '"Energy moving forward with the West"',
+      'footer.desc':          'Company specialising in electricity, construction and renewable energy in Bafoussam, Cameroon. Expertise, reliability and commitment for over 10 years.',
+      'footer.links.title':   'Quick Links',
+      'footer.contact.title': 'Contact',
+      'footer.copy':          '© 2025 Alpha Elec Services SARL — All rights reserved',
+      'footer.made':          'Bafoussam, Cameroon',
+    }
+  };
+
+  let currentLang = 'fr';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+
+    /* Update all data-i18n elements */
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) {
+        el.innerHTML = t[key];
+      }
+    });
+
+    /* Toggle button states */
+    ['btn-fr','btn-fr-mob'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.classList.toggle('active', lang === 'fr'); el.setAttribute('aria-pressed', lang === 'fr'); }
+    });
+    ['btn-en','btn-en-mob'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.classList.toggle('active', lang === 'en'); el.setAttribute('aria-pressed', lang === 'en'); }
+    });
+
+    document.documentElement.lang = lang;
+  }
+
+
+  /* ============================================
+     NAVBAR SCROLL BEHAVIOUR
+  ============================================ */
+  const navbar = document.getElementById('navbar');
+  const backTop = document.getElementById('back-top');
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 60);
+    backTop.classList.toggle('show', y > 400);
+  }, { passive: true });
+
+
+  /* ============================================
+     ACTIVE NAV LINK (IntersectionObserver)
+  ============================================ */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+
+  /* ============================================
+     SCROLL FADE-IN
+  ============================================ */
+  const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    /* Stagger cards */
+    if (el.closest('.services-grid') || el.closest('.gallery-grid')) {
+      const idx = Array.from(el.parentElement.children).indexOf(el);
+      el.style.transitionDelay = (idx * 80) + 'ms';
+    }
+    fadeObserver.observe(el);
+  });
+
+
+  /* ============================================
+     HAMBURGER MENU
+  ============================================ */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    hamburger.classList.toggle('open', !isOpen);
+    mobileMenu.classList.toggle('open', !isOpen);
+    hamburger.setAttribute('aria-expanded', String(!isOpen));
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  /* Close menu on Escape */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+  </script>
+
+</body>
+</html>
