@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alpha Elec Services SARL — L'énergie qui avance avec l'Ouest</title>
+  <title>Alpha Elec Services SARL | L'énergie qui avance avec l'Ouest</title>
   <meta name="description" content="Alpha Elec Services SARL, entreprise électrique à Bafoussam, Cameroun. Installation électrique, dépannage, réseaux BT/HT, énergie renouvelable, études techniques et vente de matériel." />
   <meta property="og:title" content="Alpha Elec Services SARL" />
   <meta property="og:description" content="L'énergie qui avance avec l'Ouest. Spécialiste en électricité, BTP et énergie à Bafoussam, Cameroun." />
   <meta property="og:type" content="website" />
 
   <!-- Favicon SVG inline -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='5' fill='%230047AB'/><polygon points='13,3 5,13.5 11.5,13.5 10.5,21 19,10.5 12.5,10.5' fill='%23FFC200'/></svg>" />
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -721,8 +721,9 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 1.1rem;
+      color: var(--yellow);
     }
+    .contact-icon svg { width: 20px; height: 20px; }
     .contact-item-text strong {
       display: block;
       font-size: .78rem;
@@ -832,7 +833,9 @@
       gap: 10px;
       font-size: .83rem;
     }
-    .footer-contact-item span:first-child { font-size: 1rem; flex-shrink: 0; }
+    .footer-contact-item span:first-child { flex-shrink: 0; color: var(--yellow); }
+    .footer-contact-item span:first-child svg { display: block; width: 16px; height: 16px; margin-top: 2px; }
+    .footer-bolt { display: inline-flex; color: var(--yellow); }
     .footer-contact-item a { color: rgba(255,255,255,.55); transition: color var(--transition); }
     .footer-contact-item a:hover { color: var(--white); }
 
@@ -922,7 +925,7 @@
     <div class="container nav-inner">
 
       <!-- Logo -->
-      <a href="#accueil" class="nav-logo" aria-label="Alpha Elec Services — Accueil">
+      <a href="#accueil" class="nav-logo" aria-label="Accueil Alpha Elec Services">
         <img src="logo.png" alt="Alpha Elec Services" id="nav-logo-img"
              onerror="this.style.display='none'; document.getElementById('nav-logo-txt').style.display='block';" />
         <div class="nav-logo-fallback" id="nav-logo-txt" style="display:none;">
@@ -988,7 +991,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
           </svg>
-          <span data-i18n="hero.badge">Entreprise Électrique · Bafoussam, Cameroun</span>
+          <span data-i18n="hero.badge">Entreprise d'électricité · Bafoussam, Cameroun</span>
         </div>
 
         <h1 class="hero-title">
@@ -996,8 +999,7 @@
         </h1>
         <p class="hero-slogan" data-i18n="hero.slogan">« L'énergie qui avance avec l'Ouest »</p>
         <p class="hero-desc" data-i18n="hero.desc">
-          Spécialiste en installation électrique, réseaux BT/HT et énergie renouvelable.
-          Fiabilité, expertise et engagement au service des particuliers et des industriels de la Région de l'Ouest.
+          Installation électrique, réseaux BT/HT et énergie renouvelable pour les particuliers et les industriels de la Région de l'Ouest.
         </p>
 
         <div class="hero-btns">
@@ -1039,10 +1041,10 @@
   ============================================= -->
   <section id="services" aria-labelledby="services-title">
     <div class="container">
-      <h2 class="section-title fade-up" id="services-title" data-i18n="services.title">Nos Services</h2>
+      <h2 class="section-title fade-up" id="services-title" data-i18n="services.title">Nos services</h2>
       <span class="section-line fade-up"></span>
       <p class="section-subtitle fade-up" data-i18n="services.subtitle">
-        Des prestations complètes en électricité et énergie, adaptées aux besoins des particuliers, entreprises et industriels.
+        Électricité et énergie pour les particuliers, les entreprises et les industriels.
       </p>
 
       <div class="services-grid">
@@ -1058,7 +1060,7 @@
               <path d="M14 14.5V19a2 2 0 01-2 2H4a2 2 0 01-2-2v-5a2 2 0 012-2h8a2 2 0 012 2zM2 9.5V5a2 2 0 012-2h8a2 2 0 012 2v4.5"/>
             </svg>
           </div>
-          <h3 data-i18n="s1.title">Installation Électrique</h3>
+          <h3 data-i18n="s1.title">Installation électrique</h3>
           <p data-i18n="s1.desc">
             Conception et réalisation de tableaux électriques, câblage résidentiel et industriel aux normes en vigueur. Nous intervenons pour les logements, bureaux et bâtiments commerciaux dans toute la Région de l'Ouest.
           </p>
@@ -1073,9 +1075,9 @@
               <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
             </svg>
           </div>
-          <h3 data-i18n="s2.title">Dépannage & Maintenance</h3>
+          <h3 data-i18n="s2.title">Dépannage et maintenance</h3>
           <p data-i18n="s2.desc">
-            Interventions rapides pour tout type de panne électrique : courts-circuits, défauts de disjoncteurs, coupures intempestives. Maintenance préventive et corrective pour garantir la continuité de votre alimentation.
+            Interventions rapides pour tout type de panne électrique : courts-circuits, défauts de disjoncteurs, coupures intempestives. Maintenance préventive et corrective pour limiter les coupures.
           </p>
         </article>
 
@@ -1086,9 +1088,9 @@
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
             </svg>
           </div>
-          <h3 data-i18n="s3.title">Réseaux Électriques BT/HT</h3>
+          <h3 data-i18n="s3.title">Réseaux électriques BT/HT</h3>
           <p data-i18n="s3.desc">
-            Extension et construction de lignes basse tension (BT) et haute tension (HT), pose de poteaux et armements, raccordements au réseau ENEO. Expertise reconnue dans les travaux de génie électrique en milieu urbain et rural.
+            Extension et construction de lignes basse tension (BT) et haute tension (HT), pose de poteaux et armements, raccordements au réseau ENEO. Nous intervenons en ville comme en zone rurale.
           </p>
         </article>
 
@@ -1107,7 +1109,7 @@
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
             </svg>
           </div>
-          <h3 data-i18n="s4.title">Énergie Renouvelable</h3>
+          <h3 data-i18n="s4.title">Énergie renouvelable</h3>
           <p data-i18n="s4.desc">
             Installation de systèmes solaires photovoltaïques autonomes et hybrides pour les ménages et entreprises. Solutions adaptées aux zones périurbaines et rurales de l'Ouest Cameroun, avec onduleurs et batteries de stockage.
           </p>
@@ -1121,9 +1123,9 @@
               <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
             </svg>
           </div>
-          <h3 data-i18n="s5.title">Études & Conseils Techniques</h3>
+          <h3 data-i18n="s5.title">Études et conseil technique</h3>
           <p data-i18n="s5.desc">
-            Élaboration de plans électriques, dimensionnement des installations, bilans de puissance et notes de calcul. Accompagnement technique de la conception à la réception des travaux pour garantir conformité et sécurité.
+            Élaboration de plans électriques, dimensionnement des installations, bilans de puissance et notes de calcul. Suivi technique de la conception à la réception des travaux.
           </p>
         </article>
 
@@ -1136,9 +1138,9 @@
               <path d="M16 10a4 4 0 01-8 0"/>
             </svg>
           </div>
-          <h3 data-i18n="s6.title">Vente de Matériel Électrique</h3>
+          <h3 data-i18n="s6.title">Vente de matériel électrique</h3>
           <p data-i18n="s6.desc">
-            Fourniture de câbles, disjoncteurs, tableaux électriques, luminaires, panneaux solaires et accessoires de qualité. Matériel sélectionné auprès de fournisseurs fiables pour assurer durabilité et performance de vos installations.
+            Fourniture de câbles, disjoncteurs, tableaux électriques, luminaires, panneaux solaires et accessoires.
           </p>
         </article>
 
@@ -1152,10 +1154,10 @@
   ============================================= -->
   <section id="realisations" aria-labelledby="real-title">
     <div class="container">
-      <h2 class="section-title fade-up" id="real-title" data-i18n="real.title">Nos Réalisations</h2>
+      <h2 class="section-title fade-up" id="real-title" data-i18n="real.title">Nos réalisations</h2>
       <span class="section-line fade-up"></span>
       <p class="section-subtitle fade-up" data-i18n="real.subtitle">
-        Un aperçu de nos interventions sur le terrain — installations résidentielles, industrielles et réseaux publics.
+        Un aperçu de nos interventions sur le terrain : installations résidentielles, industrielles et réseaux publics.
       </p>
 
       <div class="gallery-grid">
@@ -1169,7 +1171,7 @@
           />
           <div class="gallery-overlay"></div>
           <div class="gallery-label">
-            <strong data-i18n="real.p1.title">Réseau BT — Zone périurbaine</strong>
+            <strong data-i18n="real.p1.title">Réseau BT, zone périurbaine</strong>
             <span data-i18n="real.p1.sub">Extension ligne 630 m · Bafoussam</span>
           </div>
         </div>
@@ -1184,7 +1186,7 @@
           <div class="gallery-overlay"></div>
           <div class="gallery-label">
             <strong data-i18n="real.p2.title">Installation solaire industrielle</strong>
-            <span data-i18n="real.p2.sub">30 kWc — Site agro-industriel</span>
+            <span data-i18n="real.p2.sub">30 kWc · Site agro-industriel</span>
           </div>
         </div>
 
@@ -1255,20 +1257,20 @@
   ============================================= -->
   <section id="apropos" aria-labelledby="about-title">
     <div class="container">
-      <h2 class="section-title fade-up" id="about-title" data-i18n="about.title">À Propos de Nous</h2>
+      <h2 class="section-title fade-up" id="about-title" data-i18n="about.title">À propos de nous</h2>
       <span class="section-line fade-up"></span>
 
       <div class="apropos-grid">
 
         <div class="apropos-text fade-up">
           <p data-i18n="about.p1">
-            Alpha Elec Services SARL est une entreprise camerounaise spécialisée dans les travaux d'électricité, le BTP et les solutions énergétiques. Implantée à Bafoussam depuis plus d'une décennie, nous accompagnons particuliers, PME et collectivités dans leurs projets électriques avec sérieux et professionnalisme.
+            Alpha Elec Services SARL est une entreprise camerounaise spécialisée dans les travaux d'électricité, le BTP et les solutions énergétiques. Implantée à Bafoussam depuis plus d'une décennie, nous accompagnons particuliers, PME et collectivités dans leurs projets électriques.
           </p>
           <p data-i18n="about.p2">
-            Notre ancrage local dans la Région de l'Ouest du Cameroun nous confère une connaissance approfondie des réalités du terrain et des exigences des maîtres d'ouvrage. Nous intervenons sur des projets variés : de la petite installation domestique aux grands réseaux de distribution électrique.
+            Nous travaillons dans la Région de l'Ouest et connaissons les contraintes des chantiers locaux comme les exigences des maîtres d'ouvrage. Nos chantiers vont de la petite installation domestique aux réseaux de distribution électrique.
           </p>
           <p data-i18n="about.p3">
-            Constituée en Société à Responsabilité Limitée, Alpha Elec Services SARL est engagée dans le respect des normes techniques et de la réglementation en vigueur, garantissant à nos clients des installations sûres, durables et efficaces.
+            Alpha Elec Services est une SARL. Nos installations respectent les normes techniques et la réglementation en vigueur.
           </p>
 
           <div class="engagements">
@@ -1305,7 +1307,7 @@
 
           <div class="certif-block fade-up">
             <p data-i18n="about.certif">
-              <strong>Notre mission :</strong> fournir des solutions électriques fiables et innovantes qui soutiennent le développement économique de la Région de l'Ouest et contribuent à l'accès à l'énergie pour tous.
+              <strong>Notre mission :</strong> apporter une électricité sûre aux foyers et aux entreprises de la Région de l'Ouest.
             </p>
           </div>
         </div>
@@ -1323,7 +1325,7 @@
       <h2 class="section-title fade-up" id="contact-title" data-i18n="contact.title">Contactez-nous</h2>
       <span class="section-line fade-up"></span>
       <p class="section-subtitle fade-up" data-i18n="contact.subtitle">
-        Disponibles pour vous répondre et étudier votre projet. N'hésitez pas à nous joindre.
+        Appelez-nous ou écrivez-nous pour parler de votre projet.
       </p>
 
       <div class="contact-grid">
@@ -1333,7 +1335,7 @@
           <h3 data-i18n="contact.info.title">Nos coordonnées</h3>
 
           <div class="contact-item">
-            <div class="contact-icon">📞</div>
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
             <div class="contact-item-text">
               <strong data-i18n="contact.phone.label">Téléphone</strong>
               <a href="tel:+237682202265">682 20 22 65</a><br>
@@ -1342,7 +1344,7 @@
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></div>
             <div class="contact-item-text">
               <strong data-i18n="contact.email.label">Email</strong>
               <a href="mailto:alpha.elec@gmail.com">alpha.elec@gmail.com</a>
@@ -1350,7 +1352,7 @@
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">📍</div>
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
             <div class="contact-item-text">
               <strong data-i18n="contact.addr.label">Adresse</strong>
               <p data-i18n="contact.addr.val">Route de la Prison centrale, à 200 m du Stade omnisports de Toket, Bafoussam, Cameroun</p>
@@ -1399,7 +1401,7 @@
           </div>
           <p class="footer-slogan" data-i18n="footer.slogan">« L'énergie qui avance avec l'Ouest »</p>
           <p class="footer-desc" data-i18n="footer.desc">
-            Entreprise spécialisée en électricité, BTP et énergie renouvelable à Bafoussam, Cameroun. Expertise, fiabilité et engagement depuis plus de 10 ans.
+            Électricité, BTP et énergie renouvelable à Bafoussam, Cameroun, depuis plus de 10 ans.
           </p>
         </div>
 
@@ -1420,19 +1422,19 @@
           <h4 data-i18n="footer.contact.title">Contact</h4>
           <ul class="footer-contact-list">
             <li class="footer-contact-item">
-              <span>📞</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
               <a href="tel:+237682202265">682 20 22 65</a>
             </li>
             <li class="footer-contact-item">
-              <span>📞</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
               <a href="tel:+237621100723">621 10 07 23</a>
             </li>
             <li class="footer-contact-item">
-              <span>✉️</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></span>
               <a href="mailto:alpha.elec@gmail.com">alpha.elec@gmail.com</a>
             </li>
             <li class="footer-contact-item">
-              <span>📍</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 0114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
               <span>Route de la Prison centrale, Bafoussam</span>
             </li>
           </ul>
@@ -1441,9 +1443,9 @@
       </div>
 
       <div class="footer-bottom">
-        <p data-i18n="footer.copy">© 2025 Alpha Elec Services SARL — Tous droits réservés</p>
+        <p data-i18n="footer.copy">© 2025 Alpha Elec Services SARL. Tous droits réservés</p>
         <div class="footer-bottom-right">
-          <span>⚡</span>
+          <span class="footer-bolt"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg></span>
           <span style="color:rgba(255,255,255,.4);" data-i18n="footer.made">Bafoussam, Cameroun</span>
         </div>
       </div>
@@ -1476,9 +1478,9 @@
       'nav.cta':      'Nous contacter',
 
       /* Hero */
-      'hero.badge':  'Entreprise Électrique · Bafoussam, Cameroun',
+      'hero.badge':  'Entreprise d\'électricité · Bafoussam, Cameroun',
       'hero.slogan': '« L\'énergie qui avance avec l\'Ouest »',
-      'hero.desc':   'Spécialiste en installation électrique, réseaux BT/HT et énergie renouvelable. Fiabilité, expertise et engagement au service des particuliers et des industriels de la Région de l\'Ouest.',
+      'hero.desc':   'Installation électrique, réseaux BT/HT et énergie renouvelable pour les particuliers et les industriels de la Région de l\'Ouest.',
       'hero.btn1':   'Nos services',
       'hero.btn2':   'Nous contacter',
       'hero.stat1':  'Années d\'expérience',
@@ -1487,28 +1489,28 @@
       'hero.stat4':  'Services disponibles',
 
       /* Services section */
-      'services.title':    'Nos Services',
-      'services.subtitle': 'Des prestations complètes en électricité et énergie, adaptées aux besoins des particuliers, entreprises et industriels.',
-      's1.title': 'Installation Électrique',
+      'services.title':    'Nos services',
+      'services.subtitle': 'Électricité et énergie pour les particuliers, les entreprises et les industriels.',
+      's1.title': 'Installation électrique',
       's1.desc':  'Conception et réalisation de tableaux électriques, câblage résidentiel et industriel aux normes en vigueur. Nous intervenons pour les logements, bureaux et bâtiments commerciaux dans toute la Région de l\'Ouest.',
-      's2.title': 'Dépannage & Maintenance',
-      's2.desc':  'Interventions rapides pour tout type de panne électrique : courts-circuits, défauts de disjoncteurs, coupures intempestives. Maintenance préventive et corrective pour garantir la continuité de votre alimentation.',
-      's3.title': 'Réseaux Électriques BT/HT',
-      's3.desc':  'Extension et construction de lignes basse tension (BT) et haute tension (HT), pose de poteaux et armements, raccordements au réseau ENEO. Expertise reconnue dans les travaux de génie électrique en milieu urbain et rural.',
-      's4.title': 'Énergie Renouvelable',
+      's2.title': 'Dépannage et maintenance',
+      's2.desc':  'Interventions rapides pour tout type de panne électrique : courts-circuits, défauts de disjoncteurs, coupures intempestives. Maintenance préventive et corrective pour limiter les coupures.',
+      's3.title': 'Réseaux électriques BT/HT',
+      's3.desc':  'Extension et construction de lignes basse tension (BT) et haute tension (HT), pose de poteaux et armements, raccordements au réseau ENEO. Nous intervenons en ville comme en zone rurale.',
+      's4.title': 'Énergie renouvelable',
       's4.desc':  'Installation de systèmes solaires photovoltaïques autonomes et hybrides pour les ménages et entreprises. Solutions adaptées aux zones périurbaines et rurales de l\'Ouest Cameroun, avec onduleurs et batteries de stockage.',
-      's5.title': 'Études & Conseils Techniques',
-      's5.desc':  'Élaboration de plans électriques, dimensionnement des installations, bilans de puissance et notes de calcul. Accompagnement technique de la conception à la réception des travaux pour garantir conformité et sécurité.',
-      's6.title': 'Vente de Matériel Électrique',
-      's6.desc':  'Fourniture de câbles, disjoncteurs, tableaux électriques, luminaires, panneaux solaires et accessoires de qualité. Matériel sélectionné auprès de fournisseurs fiables pour assurer durabilité et performance.',
+      's5.title': 'Études et conseil technique',
+      's5.desc':  'Élaboration de plans électriques, dimensionnement des installations, bilans de puissance et notes de calcul. Suivi technique de la conception à la réception des travaux.',
+      's6.title': 'Vente de matériel électrique',
+      's6.desc':  'Fourniture de câbles, disjoncteurs, tableaux électriques, luminaires, panneaux solaires et accessoires.',
 
       /* Réalisations */
-      'real.title':    'Nos Réalisations',
-      'real.subtitle': 'Un aperçu de nos interventions sur le terrain — installations résidentielles, industrielles et réseaux publics.',
-      'real.p1.title': 'Réseau BT — Zone périurbaine',
+      'real.title':    'Nos réalisations',
+      'real.subtitle': 'Un aperçu de nos interventions sur le terrain : installations résidentielles, industrielles et réseaux publics.',
+      'real.p1.title': 'Réseau BT, zone périurbaine',
       'real.p1.sub':   'Extension ligne 630 m · Bafoussam',
       'real.p2.title': 'Installation solaire industrielle',
-      'real.p2.sub':   '30 kWc — Site agro-industriel',
+      'real.p2.sub':   '30 kWc · Site agro-industriel',
       'real.p3.title': 'Électrification résidentielle',
       'real.p3.sub':   'Immeuble R+4 · 24 appartements',
       'real.p4.title': 'Tableau électrique industriel',
@@ -1517,24 +1519,24 @@
       'real.p5.sub':   'Voie principale · 48 luminaires LED',
       'real.p6.title': 'Mise aux normes villa',
       'real.p6.sub':   'Rénovation complète · Quartier Djeleng',
-      'real.note':     '* Galerie illustrative — remplacez ces blocs par vos photos de chantier.',
+      'real.note':     '* Photos d\'illustration.',
 
       /* À propos */
-      'about.title': 'À Propos de Nous',
-      'about.p1':    'Alpha Elec Services SARL est une entreprise camerounaise spécialisée dans les travaux d\'électricité, le BTP et les solutions énergétiques. Implantée à Bafoussam depuis plus d\'une décennie, nous accompagnons particuliers, PME et collectivités dans leurs projets électriques avec sérieux et professionnalisme.',
-      'about.p2':    'Notre ancrage local dans la Région de l\'Ouest du Cameroun nous confère une connaissance approfondie des réalités du terrain et des exigences des maîtres d\'ouvrage. Nous intervenons sur des projets variés : de la petite installation domestique aux grands réseaux de distribution électrique.',
-      'about.p3':    'Constituée en Société à Responsabilité Limitée, Alpha Elec Services SARL est engagée dans le respect des normes techniques et de la réglementation en vigueur, garantissant à nos clients des installations sûres, durables et efficaces.',
+      'about.title': 'À propos de nous',
+      'about.p1':    'Alpha Elec Services SARL est une entreprise camerounaise spécialisée dans les travaux d\'électricité, le BTP et les solutions énergétiques. Implantée à Bafoussam depuis plus d\'une décennie, nous accompagnons particuliers, PME et collectivités dans leurs projets électriques.',
+      'about.p2':    'Nous travaillons dans la Région de l\'Ouest et connaissons les contraintes des chantiers locaux comme les exigences des maîtres d\'ouvrage. Nos chantiers vont de la petite installation domestique aux réseaux de distribution électrique.',
+      'about.p3':    'Alpha Elec Services est une SARL. Nos installations respectent les normes techniques et la réglementation en vigueur.',
       'about.eng1':  'Respect strict des normes électriques et des délais contractuels',
       'about.eng2':  'Matériaux certifiés et main-d\'œuvre qualifiée à chaque intervention',
       'about.eng3':  'Proximité et réactivité : nous répondons à vos urgences 6j/7',
       'about.stat1': 'Ans d\'exp.',
       'about.stat2': 'Projets',
       'about.stat3': 'Clients',
-      'about.certif':'<strong>Notre mission :</strong> fournir des solutions électriques fiables et innovantes qui soutiennent le développement économique de la Région de l\'Ouest et contribuent à l\'accès à l\'énergie pour tous.',
+      'about.certif':'<strong>Notre mission :</strong> apporter une électricité sûre aux foyers et aux entreprises de la Région de l\'Ouest.',
 
       /* Contact */
       'contact.title':       'Contactez-nous',
-      'contact.subtitle':    'Disponibles pour vous répondre et étudier votre projet. N\'hésitez pas à nous joindre.',
+      'contact.subtitle':    'Appelez-nous ou écrivez-nous pour parler de votre projet.',
       'contact.info.title':  'Nos coordonnées',
       'contact.phone.label': 'Téléphone',
       'contact.email.label': 'Email',
@@ -1546,10 +1548,10 @@
 
       /* Footer */
       'footer.slogan':        '« L\'énergie qui avance avec l\'Ouest »',
-      'footer.desc':          'Entreprise spécialisée en électricité, BTP et énergie renouvelable à Bafoussam, Cameroun. Expertise, fiabilité et engagement depuis plus de 10 ans.',
+      'footer.desc':          'Électricité, BTP et énergie renouvelable à Bafoussam, Cameroun, depuis plus de 10 ans.',
       'footer.links.title':   'Liens rapides',
       'footer.contact.title': 'Contact',
-      'footer.copy':          '© 2025 Alpha Elec Services SARL — Tous droits réservés',
+      'footer.copy':          '© 2025 Alpha Elec Services SARL. Tous droits réservés',
       'footer.made':          'Bafoussam, Cameroun',
     },
 
@@ -1565,7 +1567,7 @@
       /* Hero */
       'hero.badge':  'Electrical Company · Bafoussam, Cameroon',
       'hero.slogan': '"Energy moving forward with the West"',
-      'hero.desc':   'Specialists in electrical installation, LV/HV networks and renewable energy. Reliability, expertise and commitment serving individuals and industries in the Western Region.',
+      'hero.desc':   'Electrical installation, LV/HV networks and renewable energy for homes and businesses in the Western Region.',
       'hero.btn1':   'Our Services',
       'hero.btn2':   'Contact Us',
       'hero.stat1':  'Years of Experience',
@@ -1575,27 +1577,27 @@
 
       /* Services section */
       'services.title':    'Our Services',
-      'services.subtitle': 'Complete electrical and energy services tailored to the needs of individuals, businesses and industries.',
+      'services.subtitle': 'Electrical and energy services for individuals, businesses and industry.',
       's1.title': 'Electrical Installation',
       's1.desc':  'Design and construction of electrical panels, residential and industrial wiring to current standards. We operate for homes, offices and commercial buildings throughout the Western Region.',
       's2.title': 'Troubleshooting & Maintenance',
-      's2.desc':  'Fast response for all types of electrical faults: short circuits, circuit breaker failures, unexpected power cuts. Preventive and corrective maintenance to ensure continuity of your power supply.',
+      's2.desc':  'Fast response for all types of electrical faults: short circuits, circuit breaker failures, unexpected power cuts. Preventive and corrective maintenance to keep power cuts to a minimum.',
       's3.title': 'LV/HV Electrical Networks',
-      's3.desc':  'Extension and construction of low voltage (LV) and high voltage (HV) lines, pole installation, connections to the ENEO network. Recognized expertise in electrical engineering in urban and rural environments.',
+      's3.desc':  'Extension and construction of low voltage (LV) and high voltage (HV) lines, pole installation, connections to the ENEO network. We work in both urban and rural areas.',
       's4.title': 'Renewable Energy',
       's4.desc':  'Installation of stand-alone and hybrid photovoltaic solar systems for households and businesses. Solutions adapted to peri-urban and rural areas of Western Cameroon, with inverters and storage batteries.',
       's5.title': 'Technical Studies & Consulting',
-      's5.desc':  'Development of electrical plans, system sizing, power balances and calculation notes. Technical support from design to project handover to ensure compliance and safety.',
+      's5.desc':  'Development of electrical plans, system sizing, power balances and calculation notes. Technical follow-up from design to project handover.',
       's6.title': 'Electrical Equipment Sales',
-      's6.desc':  'Supply of quality cables, circuit breakers, electrical panels, luminaires, solar panels and accessories. Materials sourced from reliable suppliers to ensure durability and performance.',
+      's6.desc':  'Supply of cables, circuit breakers, electrical panels, luminaires, solar panels and accessories.',
 
       /* Réalisations */
       'real.title':    'Our Projects',
-      'real.subtitle': 'A glimpse of our field work — residential, industrial installations and public networks.',
-      'real.p1.title': 'LV Network — Peri-urban Area',
+      'real.subtitle': 'A glimpse of our field work: residential and industrial installations and public networks.',
+      'real.p1.title': 'LV network, peri-urban area',
       'real.p1.sub':   '630 m line extension · Bafoussam',
       'real.p2.title': 'Industrial Solar Installation',
-      'real.p2.sub':   '30 kWp — Agro-industrial site',
+      'real.p2.sub':   '30 kWp · Agro-industrial site',
       'real.p3.title': 'Residential Electrification',
       'real.p3.sub':   'R+4 Building · 24 apartments',
       'real.p4.title': 'Industrial Electrical Panel',
@@ -1604,24 +1606,24 @@
       'real.p5.sub':   'Main road · 48 LED fixtures',
       'real.p6.title': 'Villa Standards Upgrade',
       'real.p6.sub':   'Full renovation · Djeleng District',
-      'real.note':     '* Illustrative gallery — replace these blocks with your site photos.',
+      'real.note':     '* Illustrative photos.',
 
       /* About */
       'about.title': 'About Us',
-      'about.p1':    'Alpha Elec Services SARL is a Cameroonian company specialising in electrical works, construction and energy solutions. Based in Bafoussam for over a decade, we support individuals, SMEs and local authorities in their electrical projects with professionalism and dedication.',
-      'about.p2':    'Our local roots in the Western Region of Cameroon give us a deep understanding of on-the-ground realities and client requirements. We handle a wide range of projects, from small domestic installations to large-scale power distribution networks.',
-      'about.p3':    'Incorporated as a Limited Liability Company, Alpha Elec Services SARL is committed to upholding technical standards and current regulations, ensuring our clients receive safe, durable and efficient installations.',
+      'about.p1':    'Alpha Elec Services SARL is a Cameroonian company specialising in electrical works, construction and energy solutions. Based in Bafoussam for over a decade, we support individuals, SMEs and local authorities in their electrical projects.',
+      'about.p2':    'We work across the Western Region of Cameroon and know the constraints of local sites as well as the requirements of project owners. Our projects range from small domestic installations to power distribution networks.',
+      'about.p3':    'Alpha Elec Services is a limited liability company (SARL). Our installations comply with technical standards and current regulations.',
       'about.eng1':  'Strict compliance with electrical standards and contractual deadlines',
       'about.eng2':  'Certified materials and qualified workforce on every job',
       'about.eng3':  'Proximity and responsiveness: emergency call-outs 6 days a week',
       'about.stat1': 'Yrs of exp.',
       'about.stat2': 'Projects',
       'about.stat3': 'Clients',
-      'about.certif':'<strong>Our mission:</strong> to deliver reliable and innovative electrical solutions that support economic development in the Western Region and contribute to energy access for all.',
+      'about.certif':'<strong>Our mission:</strong> to bring safe electricity to homes and businesses in the Western Region.',
 
       /* Contact */
       'contact.title':       'Contact Us',
-      'contact.subtitle':    'Available to answer your questions and assess your project. Don\'t hesitate to reach out.',
+      'contact.subtitle':    'Call or write to us to discuss your project.',
       'contact.info.title':  'Our Contact Details',
       'contact.phone.label': 'Phone',
       'contact.email.label': 'Email',
@@ -1633,10 +1635,10 @@
 
       /* Footer */
       'footer.slogan':        '"Energy moving forward with the West"',
-      'footer.desc':          'Company specialising in electricity, construction and renewable energy in Bafoussam, Cameroon. Expertise, reliability and commitment for over 10 years.',
+      'footer.desc':          'Electricity, construction and renewable energy in Bafoussam, Cameroon, for over 10 years.',
       'footer.links.title':   'Quick Links',
       'footer.contact.title': 'Contact',
-      'footer.copy':          '© 2025 Alpha Elec Services SARL — All rights reserved',
+      'footer.copy':          '© 2025 Alpha Elec Services SARL. All rights reserved',
       'footer.made':          'Bafoussam, Cameroon',
     }
   };
