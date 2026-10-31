@@ -1,11 +1,16 @@
 ---
 name: effacer-traces-ia
-description: Efface les tics d'écriture qui trahissent un texte généré par IA (tiret cadratin, « ce n'est pas X, c'est Y », règle de trois, fragments en rafale, mots gonflés comme crucial ou robuste, émojis dans les titres, gras partout, flatterie, introduction qui reformule, conclusion qui résume, question d'engagement finale) dans les textes, la documentation, les README, les commentaires de code, les messages de commit, les e-mails et le contenu marketing. Utilise ce skill systématiquement dès que tu rédiges ou relis un texte destiné à être publié, envoyé, livré ou commité, en français comme en anglais, et chaque fois que l'utilisateur demande d'humaniser un texte, de le rendre plus naturel, d'enlever les traces d'IA, de relire avant publication ou de vérifier qu'un texte « ne fait pas IA », même s'il ne cite pas l'IA explicitement.
+description: Recense et efface les marques d'un texte ou d'un site généré par IA (tiret cadratin, « ce n'est pas X, c'est Y », règle de trois, mots gonflés, langage de brochure, importance gonflée, attributions vagues, chiffres sans source, émojis en guise d'icônes, gras partout, gabarits oubliés comme [Votre nom], artefacts comme utm_source=chatgpt.com, phrases de chatbot, flatterie, conclusion qui résume) dans les textes, pages web, documentations, README, commentaires de code, commits, e-mails et contenus marketing. Utilise-le systématiquement dès que tu rédiges, relis ou corriges un texte ou un site à publier, envoyer ou commiter, en français comme en anglais, et quand l'utilisateur demande d'humaniser un texte, d'enlever les traces d'IA, de nettoyer un site ou de vérifier qu'un texte « ne fait pas IA », même sans citer l'IA.
 ---
 
 # Effacer les traces d'IA
 
-Source principale : guide « Les tics de l'IA : la liste complète » de MEZES Corporation. Le détail de chaque tic, avec un exemple avant/après, se trouve dans `references/guide-complet.md`. Lis-le quand tu as un doute sur un cas précis.
+Sources : guide « Les tics de l'IA : la liste complète » de MEZES Corporation, complété par la page Wikipedia « Signs of AI writing », l'étude Kobak et al. sur le vocabulaire en excès et des analyses de sites générés par IA. Deux fichiers donnent le détail avec des exemples avant/après :
+
+- `references/guide-complet.md` : les tics du guide MEZES (ponctuation, structure, tournures, vocabulaire, ton, code).
+- `references/autres-marques.md` : les autres marques (importance gonflée, langage de brochure, participe présent de commentaire, attributions vagues, chiffres sans source, artefacts de copier-coller, gabarits oubliés, marques propres aux sites web, code).
+
+Lis-les quand tu as un doute sur un cas précis, et toujours avant de corriger un site complet.
 
 ## Le principe
 
@@ -71,6 +76,23 @@ Ce skill s'applique dans deux situations :
 
 En anglais, les mêmes tics existent : em dash, « it's not X, it's Y », « delve », « crucial », « robust », « seamless », « leverage », « game-changer », « In today's fast-paced world », « Let's dive in », « Great question! », « I hope this helps ». Applique les mêmes corrections.
 
+### Autres marques à effacer
+
+Le détail et les exemples sont dans `references/autres-marques.md`.
+
+- **Importance gonflée** : « joue un rôle clé », « marque un tournant », « pierre angulaire », « véritable pilier ». Remplace par un fait vérifiable.
+- **Langage de brochure** : « niché au cœur de », « votre partenaire de confiance », « solutions sur mesure », « à la pointe », « allie tradition et modernité ». Si la phrase marche aussi pour un concurrent, elle ne dit rien.
+- **Participe présent de commentaire** en fin de phrase : « …, soulignant ainsi… », « …, témoignant de… », « …, contribuant à… ». Coupe-le.
+- **Attributions vagues** : « selon les experts », « des études montrent ». Cite la source ou supprime.
+- **Connecteurs en rafale** : « De plus », « Par ailleurs », « En outre » en tête de chaque phrase.
+- **Faux intervalles** (« de la conception à la réalisation ») et **variation élégante** (l'entreprise, la structure, l'acteur… pour la même chose).
+- **Chiffres sans source et promesses absolues** : « 98 % de clients satisfaits », « résultats garantis », « en quelques clics ». N'invente jamais un chiffre.
+- **Vocabulaire en excès** : delve, showcase, underscore, foster, tapestry, vibrant ; méticuleux, holistique, synergie, myriade, panoplie, mettre en lumière.
+- **Titres racoleurs** : « Le guide ultime », « Tout ce que vous devez savoir ».
+- **Listes à en-tête en gras** (« **Rapidité :** … ») et **Markdown visible** hors Markdown (astérisques dans un e-mail ou une page HTML).
+- **Traces de copier-coller** : `utm_source=chatgpt.com`, `turn0search0`, `oaicite`, gabarits `[Votre nom]` ou `6XX XX XX XX`, phrases de chatbot (« Voici une version améliorée : », « Bien sûr ! »), avertissements « à ma connaissance » ou « selon mes dernières informations ».
+- **Sites web** : émojis utilisés comme icônes, slogans interchangeables, témoignages génériques. Ne réécris jamais un faux témoignage : signale-le.
+
 ### Code
 
 - Commente uniquement le pourquoi, jamais ce que le code fait déjà clairement (pas de `// Incrémente le compteur de 1` au-dessus de `counter++;`).
@@ -81,6 +103,18 @@ En anglais, les mêmes tics existent : em dash, « it's not X, it's Y », « del
 - Messages de commit courts, à l'impératif, factuels, sans émoji (« Corrige l'expiration du jeton de session »).
 - README : à quoi sert le projet, comment l'installer, comment le lancer. Le reste (badges, sections « Features » ou « Contributing » vides, « Built with ❤️ ») seulement si c'est vrai et utile.
 - Une seule langue par usage (code, commentaires, interface), tenue partout.
+- Pas de commentaires de journal de bord (« // Ajouté pour corriger le bug », « // Updated to… ») : l'historique appartient à Git.
+- Pas de journaux de débogage décorés (`console.log("✅ Chargé avec succès !")`).
+
+## Corriger un site web complet
+
+1. Lance le détecteur sur tout le dépôt pour mesurer l'ampleur, puis traite les pages publiques en priorité : pages HTML, composants (`.astro`, `.vue`, `.jsx`), contenus Markdown, et textes affichés par le JavaScript.
+2. Ne touche pas aux données externes ou générées (exports JSON, contenus d'examen tiers, migrations SQL déjà appliquées, captures d'écran, fichiers minifiés) ni aux textes juridiques imposés.
+3. Tiret cadratin : choisis le remplacement selon le contexte. Dans une phrase, virgule, deux points, parenthèses ou point. Dans un titre de page ou un pied de page (« Services — Immigration Voyages »), une barre verticale ou un point médian (« Services | Immigration Voyages »). Un « — » seul qui sert à afficher une valeur vide dans un tableau n'est pas de la ponctuation : laisse-le ou remplace-le par un texte explicite (« Non renseigné »).
+4. Émojis : supprime ceux qui décorent les titres, les boutons et les commentaires. Ceux qui servent d'icônes se remplacent par les icônes SVG déjà présentes dans le site, sinon par un SVG simple ou par du texte. Garde la mise en page intacte.
+5. Garde le sens, les prix, les noms, les coordonnées et les liens. Ne change pas les identifiants, les classes CSS ni les clés de traduction.
+6. Si le site a un service worker ou un cache versionné, incrémente sa version pour que les visiteurs reçoivent les nouveaux textes.
+7. Vérifie que le site se construit toujours (`npm run build` quand il existe) et relance le détecteur pour comparer avant et après.
 
 ## Méthode de relecture
 
@@ -107,6 +141,10 @@ En anglais, les mêmes tics existent : em dash, « it's not X, it's Y », « del
 - [ ] Aucun mot du tableau de vocabulaire
 - [ ] Les commentaires expliquent le pourquoi
 - [ ] Les noms de variables parlent du métier
+- [ ] Aucune phrase d'importance gonflée ni de brochure interchangeable
+- [ ] Chaque chiffre a une source, aucune promesse absolue
+- [ ] Aucun gabarit oublié ([Votre nom], 6XX XX XX XX) ni artefact (utm_source=chatgpt.com, oaicite)
+- [ ] Aucune phrase de chatbot (« Voici… », « Bien sûr ! », « à ma connaissance »)
 
 Dernier test : lis le texte à voix haute. Si une phrase sonne comme une publicité ou une brochure, réécris-la comme tu l'expliquerais à un collègue.
 

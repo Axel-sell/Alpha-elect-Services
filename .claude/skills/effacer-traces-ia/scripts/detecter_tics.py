@@ -24,12 +24,12 @@ from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 
-EXT_MARKDOWN = {".md", ".markdown", ".txt", ".rst"}
-EXT_HTML = {".html", ".htm"}
+EXT_MARKDOWN = {".md", ".markdown", ".mdx", ".txt", ".rst"}
+EXT_HTML = {".html", ".htm", ".astro", ".vue", ".svelte"}
 EXT_CODE = {
     ".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".css", ".scss",
     ".php", ".java", ".kt", ".go", ".rb", ".rs", ".c", ".h", ".cpp", ".cs",
-    ".swift", ".sh", ".vue", ".svelte",
+    ".swift", ".sh",
 }
 DOSSIERS_IGNORES = {"node_modules", "__pycache__", "venv", "dist", "build"}
 
@@ -130,7 +130,79 @@ MOTIFS_PHRASES = [
     (r"\bpourrait (?:éventuellement|potentiellement)\b", "précautions en cascade", "affirme, en précisant le cas"),
     (r"\bdans une certaine mesure\b", "précautions en cascade", "affirme, en précisant le cas"),
     (r"\bcould potentially\b", "précautions en cascade", "affirme, en précisant le cas"),
+    # Importance gonflée
+    (r"\bjou(?:e|ent|ait|aient|er|ant) un rôle (?:clé|crucial|essentiel|central|majeur|déterminant|primordial|fondamental|prépondérant)\b",
+     "importance gonflée", "remplace par un fait vérifiable"),
+    (r"\bmarqu(?:e|ent|ait|er|ant) un (?:tournant|jalon)\b", "importance gonflée", "remplace par un fait vérifiable"),
+    (r"\b(?:pierre angulaire|véritable pilier|empreinte durable|héritage durable)\b",
+     "importance gonflée", "remplace par un fait vérifiable"),
+    (r"\bs'inscri(?:t|vent|re) (?:dans une (?:dynamique|démarche|logique)|pleinement)\b",
+     "importance gonflée", "remplace par un fait vérifiable"),
+    (r"\b(?:plays? a (?:pivotal|crucial|key|vital) role|stands as a testament|marks? a turning point|enduring legacy)\b",
+     "importance gonflée", "remplace par un fait vérifiable"),
+    # Langage de brochure
+    (r"\b(?:niché(?:e|s|es)? (?:au cœur|au coeur|dans)|havre de paix|à couper le souffle|riche patrimoine|allie(?:nt)? tradition et modernité)\b",
+     "langage de brochure", "décris concrètement"),
+    (r"\b(?:votre partenaire (?:de confiance|privilégié|idéal)|l'excellence à votre service|à votre écoute et à votre service|solutions? (?:innovantes?|sur mesure|clés? en main)|à la pointe (?:de la technologie|de l'innovation)?|savoir-faire unique|expérience (?:unique|inoubliable|inégalée)|qualité (?:supérieure|irréprochable|exceptionnelle)|prix (?:compétitifs|imbattables))\b",
+     "langage de brochure", "dis ce que l'entreprise fait réellement, pour qui, où"),
+    (r"\b(?:nestled|boasts|state-of-the-art|one-stop shop|rich (?:cultural )?heritage|breathtaking)\b",
+     "langage de brochure", "décris concrètement"),
+    # Participe présent de commentaire
+    (r",\s*(?:soulignant|reflétant|contribuant|favorisant|témoignant|illustrant|garantissant|renforçant|consolidant|mettant (?:ainsi )?en (?:lumière|avant|évidence)|symbolisant)\b",
+     "participe de commentaire", "coupe la fin de phrase ou transforme-la en fait"),
+    (r",\s*(?:highlighting|underscoring|emphasizing|reflecting|showcasing|contributing to|ensuring|fostering|solidifying|symbolizing)\b",
+     "participe de commentaire", "coupe la fin de phrase ou transforme-la en fait"),
+    # Attributions vagues
+    (r"\b(?:selon (?:les|des|de nombreux|certains) (?:experts|spécialistes|analystes)|(?:de nombreux|les|des) (?:experts|spécialistes) s'accordent|des études (?:montrent|révèlent|démontrent|prouvent)|il est (?:largement|généralement|unanimement) (?:reconnu|admis)|certains (?:observateurs|analystes|critiques))\b",
+     "attribution vague", "cite la source précise ou supprime"),
+    (r"\b(?:experts (?:say|agree|believe)|studies (?:show|suggest)|observers have|it is widely (?:recognized|believed|accepted))\b",
+     "attribution vague", "cite la source précise ou supprime"),
+    # Connecteurs en rafale
+    (r"(?:^|[.!?]\s+)(?:En outre|De surcroît|Par ailleurs|De plus|Moreover|Furthermore|Additionally),",
+     "connecteur à justifier", "garde-le seulement s'il exprime un vrai lien logique"),
+    # Chiffres sans source et promesses absolues
+    (r"\b\d{2,3}\s?% de (?:clients|satisfaction|réussite|taux de réussite)\b|\b\d+\s?(?:x|fois) plus (?:rapide|efficace)\b",
+     "chiffre à sourcer", "chiffre réel avec source et date, ou rien"),
+    (r"\b(?:résultats? garantis?|satisfaction garantie|succès garanti|réussite garantie|100\s?% (?:garanti|satisfait|réussite|fiable|sécurisé)|sans (?:aucun )?effort|en quelques clics|la solution idéale|tout ce dont (?:vous avez|tu as) besoin)\b",
+     "promesse absolue", "promesse vérifiable ou rien"),
+    # Titres racoleurs
+    (r"\b(?:le guide (?:ultime|complet|définitif)|tout ce que (?:vous devez|tu dois) savoir|les secrets (?:de|du|des|pour))\b",
+     "titre racoleur", "dis ce que le lecteur va trouver"),
+    (r"\b(?:ultimate guide|everything you need to know|unlock(?:ing)? the power|unleash|elevate your|supercharge)\b",
+     "titre racoleur", "dis ce que le lecteur va trouver"),
+    # Phrases de chatbot
+    (r"\bvoici (?:un|une|le|la|les) (?:version|texte|proposition|exemple|réécriture)s? (?:améliorée?s?|corrigée?s?|révisée?s?|possibles?|de)\b",
+     "phrase de chatbot", "supprime la phrase"),
+    (r"(?:^|[.!?]\s+)(?:Bien sûr|Certainement|Absolument|Avec plaisir)\s?!", "phrase de chatbot", "supprime la phrase"),
+    (r"(?:^|[.!?]\s+)(?:Certainly|Sure|Of course|Absolutely)!", "phrase de chatbot", "supprime la phrase"),
+    # Date de connaissance
+    (r"\b(?:à ma connaissance|selon mes (?:dernières )?(?:informations|données)|à la date de ma dernière mise à jour|je n'ai pas accès (?:à des|aux) (?:informations|données) en temps réel)\b",
+     "date de connaissance", "vérifie et date l'information, ou retire la phrase"),
+    (r"\b(?:as of my (?:last )?(?:knowledge|training)|knowledge cutoff|i don't have (?:access to )?real-time)\b",
+     "date de connaissance", "vérifie et date l'information, ou retire la phrase"),
 ]
+
+# Contrôles appliqués partout, même dans le code et les attributs HTML.
+ARTEFACTS = re.compile(
+    r"turn\d+(?:search|news|view|file|image)\d+|contentReference\[oaicite|oaicite:\d+|oai_citation"
+    r"|【\d+†[^】]*】|utm_source=(?:chatgpt\.com|openai|copilot\.com|perplexity)|\bgrok_card\b|\battached_file\b",
+    FLAGS,
+)
+GABARITS = re.compile(
+    r"\[(?:Votre|Vos|Ton|Ta|Tes|Insérer|Insérez|Ajouter|Ajoutez|Your|Insert)\b[^\]\n]{0,40}\](?!\()"
+    r"|\[(?:Nom|Prénom|Adresse|Numéro|Date|Lien|Company|Name|Placeholder)\s[^\]\n]{1,40}\](?!\()"
+    r"|(?i:\blorem ipsum\b)|\b6XX\b|\bXX XX XX\b|\bXX/XX/\d{2,4}\b"
+    r"|(?i:\b(?:contact|info)@(?:votre|ton|example|exemple)[\w-]*\.\w+)",
+)
+LISTE_EN_TETE_GRAS = re.compile(
+    r"^\s*(?:[-*+]|\d+\.)\s+\*\*[^*\n]{1,40}?:?\*\*\s*:?\s|<li[^>]*>\s*<(?:strong|b)>[^<]{1,40}</(?:strong|b)>\s*:",
+    FLAGS,
+)
+COMMENTAIRE_JOURNAL = re.compile(
+    r"(?://|/\*|^\s*\*|^\s*#|<!--)\s*(?:Ajouté|Ajout|Modifié|Modif|Nouveau|Nouvelle version|Corrigé|Correction du bug|Updated|Added|Fixed|FIX|FIXED|Changed|Now (?:handles|supports|works))\b",
+    re.MULTILINE,
+)
+MARKDOWN_VISIBLE = re.compile(r"\*\*[^*\n]{1,60}\*\*|^#{1,4}\s+\S")
 
 MOTS_GONFLES = [
     (r"crucia(?:l|le|les|ux)", "important, ou rien du tout"),
@@ -169,6 +241,29 @@ MOTS_GONFLES = [
     (r"tapestry", "mix"),
     (r"testament to", "shows"),
     (r"empower\w*", "help, let"),
+    (r"showcas\w*", "show"),
+    (r"underscor(?:e|es|ed|ing)", "show, stress"),
+    (r"foster(?:s|ed|ing)?", "help, encourage"),
+    (r"garner(?:s|ed|ing)?", "get, gain"),
+    (r"interplay", "relation"),
+    (r"realm", "field, area"),
+    (r"meticulous(?:ly)?", "careful"),
+    (r"intricate", "complex, detailed"),
+    (r"commendable", "good"),
+    (r"vibrant", "lively, or nothing"),
+    # Français, vocabulaire en excès
+    (r"méticuleu(?:x|se|ses|sement)", "soigneux, précis"),
+    (r"holistiques?", "global, complet"),
+    (r"synergies?", "collaboration, ou rien"),
+    (r"catalyseurs?", "déclencheur, ou rien"),
+    (r"tremplins?", "étape, aide"),
+    (r"myriade", "beaucoup de, ou le nombre réel"),
+    (r"panoplie", "ensemble, ou la liste réelle"),
+    (r"(?:un|une|large|vaste) éventail de", "plusieurs, ou la liste réelle"),
+    (r"mett(?:re|ent|ons|ez|ait|ant) en lumière", "montrer, expliquer"),
+    (r"captivante?s?", "intéressant, ou rien"),
+    (r"époustouflante?s?", "garde les superlatifs pour ce qui les mérite"),
+    (r"inestimables?", "précieux, utile"),
 ]
 
 MOTIFS_PHRASES_C = [(re.compile(m, FLAGS), cat, conseil) for m, cat, conseil in MOTIFS_PHRASES]
@@ -257,6 +352,10 @@ class Analyseur:
     def verifier_universel(self, num, texte):
         """Contrôles valables partout, y compris dans le code."""
         for m in TIRET_CADRATIN.finditer(texte):
+            avant = texte[m.start() - 1] if m.start() > 0 else ""
+            apres = texte[m.end()] if m.end() < len(texte) else ""
+            if avant in "'\"`>" and apres in "'\"`<":
+                continue  # « — » seul affiché pour une valeur vide : ce n'est pas de la ponctuation
             self.ajouter(num, "tiret cadratin", extrait_autour(texte, m.start(), m.end()),
                          "virgule, deux points, parenthèses ou point")
         for m in TIRET_DEMI_CADRATIN_ESPACE.finditer(texte):
@@ -266,8 +365,17 @@ class Analyseur:
         if m:
             self.ajouter(num, "émoji", extrait_autour(texte, m.start(), m.end()),
                          "aucun émoji dans les titres, la doc, le code ou les commits")
+        for m in ARTEFACTS.finditer(texte):
+            self.ajouter(num, "artefact de copier-coller", m.group(0),
+                         "supprime l'artefact (et le paramètre utm_source du lien)")
+        for m in GABARITS.finditer(texte):
+            self.ajouter(num, "gabarit oublié", m.group(0), "remplace par la vraie valeur ou supprime")
 
     def verifier_code(self, num, texte):
+        m = COMMENTAIRE_JOURNAL.search(texte)
+        if m:
+            self.ajouter(num, "commentaire de journal", extrait_autour(texte, m.start(), m.end()),
+                         "l'historique appartient à Git, explique plutôt le pourquoi")
         m = NOMS_GENERIQUES.search(texte)
         if m:
             nom = next(g for g in m.groups() if g)
@@ -291,17 +399,22 @@ class Analyseur:
             for m in motif.finditer(texte):
                 self.ajouter(num, "mot gonflé", m.group(0), conseil)
 
-    def verifier_prose(self, num, texte):
+    def verifier_prose(self, num, texte, guillemets=True):
         """Contrôles de style sur du texte rédigé (hors code)."""
         texte = normaliser(CODE_EN_LIGNE.sub("", texte))
         self.verifier_vocabulaire(num, texte)
+
+        m = LISTE_EN_TETE_GRAS.search(texte)
+        if m:
+            self.ajouter(num, "liste à en-tête en gras", m.group(0).strip(),
+                         "phrase normale, ou tableau si on compare vraiment")
 
         titre = TITRE_MD.match(texte)
         if titre and titre_en_majuscules(titre.group(1)):
             self.ajouter(num, "majuscules dans le titre", titre.group(1),
                          "en français, majuscule au premier mot seulement")
 
-        if semble_francais(texte):
+        if guillemets and semble_francais(texte):
             for m in GUILLEMETS_ANGLAIS.finditer(texte):
                 self.ajouter(num, "guillemets anglais", m.group(0), "en français, utilise « »")
 
@@ -332,10 +445,28 @@ class Analyseur:
                          "un seul gras par paragraphe au maximum")
 
 
+def fin_entete(lignes):
+    """Numéro (base 1) de la ligne qui ferme l'en-tête --- ... --- en début de fichier, ou 0."""
+    if not lignes or lignes[0].strip() != "---":
+        return 0
+    for i, ligne in enumerate(lignes[1:], 2):
+        if ligne.strip() == "---":
+            return i
+    return 0
+
+
 def analyser_markdown(analyseur, lignes):
     dans_code = False
     paragraphe, debut_paragraphe = [], 0
+    entete = fin_entete(lignes)
     for num, ligne in enumerate(lignes, 1):
+        if num <= entete:
+            # En-tête YAML : on ne vérifie que la valeur, sans les guillemets de syntaxe.
+            analyseur.verifier_universel(num, ligne)
+            valeur = re.match(r"^\s*[\w-]+\s*:\s*(.+)$", ligne)
+            if valeur:
+                analyseur.verifier_prose(num, valeur.group(1).strip().strip("\"'"), guillemets=False)
+            continue
         if re.match(r"^\s*(```|~~~)", ligne):
             dans_code = not dans_code
             continue
@@ -355,11 +486,20 @@ def analyser_markdown(analyseur, lignes):
         analyseur.verifier_gras(debut_paragraphe, " ".join(paragraphe))
 
 
-def analyser_html(analyseur, lignes):
+def analyser_html(analyseur, lignes, astro=False):
     dans_balise = False
     dans_script = False
+    entete = fin_entete(lignes) if astro else 0
     for num, ligne in enumerate(lignes, 1):
         analyseur.verifier_universel(num, ligne)
+        if num <= entete:
+            analyseur.verifier_code(num, ligne)
+            analyseur.verifier_vocabulaire(num, ligne)
+            continue
+        m = LISTE_EN_TETE_GRAS.search(ligne)
+        if m:
+            analyseur.ajouter(num, "liste à en-tête en gras", re.sub(r"<[^>]*>", "", m.group(0)).strip(),
+                              "phrase normale, ou tableau si on compare vraiment")
         bas = ligne.lower()
         if dans_script or "<script" in bas or "<style" in bas:
             if re.search(r"<(script|style)\b", bas):
@@ -385,8 +525,15 @@ def analyser_html(analyseur, lignes):
                 continue
             texte.append(car)
         visible = html.unescape("".join(texte)).strip()
+        if astro:
+            # Expressions {…} d'Astro : du code, pas du texte affiché tel quel.
+            visible = re.sub(r"\{[^{}]*\}", " ", visible).strip()
         if visible:
             analyseur.verifier_prose(num, visible)
+            m = MARKDOWN_VISIBLE.search(visible)
+            if m:
+                analyseur.ajouter(num, "markdown visible", m.group(0),
+                                  "retire la syntaxe Markdown, utilise les balises HTML")
 
 
 def analyser_code(analyseur, lignes):
@@ -400,7 +547,7 @@ def analyser_texte(chemin_affiche, contenu, extension):
     analyseur = Analyseur(chemin_affiche)
     lignes = contenu.splitlines()
     if extension in EXT_HTML:
-        analyser_html(analyseur, lignes)
+        analyser_html(analyseur, lignes, astro=(extension == ".astro"))
     elif extension in EXT_CODE:
         analyser_code(analyseur, lignes)
         if Path(chemin_affiche).stem.lower() in FICHIERS_GENERIQUES:
